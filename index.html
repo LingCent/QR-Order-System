@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus QR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              obsidian: '#050505',
+              'obsidian-deep': '#0A0A0A', // Warm Black for Legacy Mode
+              'electric-mint': '#00F5D4',
+              'luxury-gold': '#D4AF37',
+              'deep-ochre': '#800020',
+              'titanium-silver': '#E5E7EB', // Reduced halation white
+              'champagne-gold': '#F7E7CE',
+              'marble-white': '#F9F9F9',
+              'heritage-paper': '#F5F5F0', // New Heritage Background
+            },
+            boxShadow: {
+              'sovereign-press': 'inset 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 12px rgba(212, 175, 55, 0.15)',
+              'impact-flash': '0 0 30px rgba(128, 0, 32, 0.8)',
+              'stone-block': '8px 8px 0px rgba(0,0,0,0.15)', // Physical shadow for legacy buttons
+            },
+            transitionTimingFunction: {
+              'sovereign': 'cubic-bezier(0.22, 1, 0.36, 1)',
+              'boil': 'cubic-bezier(0.7, 0, 0.84, 0)', // The Boiling Algorithm
+            },
+            animation: {
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'liquid-fill': 'liquidFill 2s ease-out forwards',
+              'shake-subtle': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+              'ritual-fill': 'ritualFill 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+              'sovereign-infusion': 'infusion 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+              'scan-line': 'scanLine 2s linear infinite',
+            },
+            keyframes: {
+              liquidFill: {
+                '0%': { transform: 'scaleY(0)', transformOrigin: 'bottom' },
+                '100%': { transform: 'scaleY(1)', transformOrigin: 'bottom' },
+              },
+              ritualFill: {
+                '0%': { transform: 'scale(0)', opacity: '0.8' },
+                '100%': { transform: 'scale(1)', opacity: '0' },
+              },
+              infusion: {
+                '0%': { transform: 'scaleX(0)', opacity: '0.8' },
+                '100%': { transform: 'scaleX(1)', opacity: '1' },
+              },
+              shake: {
+                '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
+                '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
+                '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
+                '40%, 60%': { transform: 'translate3d(4px, 0, 0)' }
+              },
+              scanLine: {
+                '0%': { transform: 'translateY(-100%)', opacity: '0' },
+                '10%': { opacity: '1' },
+                '90%': { opacity: '1' },
+                '100%': { transform: 'translateY(300%)', opacity: '0' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #050505;
+        color: #ffffff;
+        -webkit-font-smoothing: antialiased;
+      }
+      /* Custom Scrollbar for the Stream */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 2px;
+      }
+
+      /* Heritage Mode (Dark): High Perception Projection */
+      .legacy-projection {
+          font-family: 'Playfair Display', serif;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 
+                       0 0 1px rgba(255, 255, 255, 0.15); 
+          letter-spacing: 0.02em;
+          -webkit-font-smoothing: subpixel-antialiased;
+      }
+
+      /* Heritage Mode (Light): Stone Carving Projection */
+      .legacy-projection-light {
+          font-family: 'Playfair Display', serif;
+          color: #1a1a1a;
+          letter-spacing: 0.01em;
+          /* Sharp, distinct shadows to simulate ink on textured paper */
+          text-shadow: 0px 1px 0px rgba(255,255,255,0.5), 
+                       0px 0px 1px rgba(0,0,0,0.1); 
+          -webkit-font-smoothing: antialiased;
+      }
+
+      /* Classic Edition Mobile Protocols (The Single-Frame Rule) */
+      .classic-item-card {
+          min-height: 180px; 
+          margin-bottom: 24px;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          /* Enforce separation of concern between Text and Image */
+      }
+
+      .classic-price-tag {
+          font-family: 'JetBrains Mono', monospace; /* Fallback to Mono */
+          font-weight: 700;
+          font-size: 28px;
+          color: #D4AF37; 
+          margin-top: 8px;
+          letter-spacing: -0.05em;
+      }
+
+      /* Oracle.Voice Active Word Animation */
+      .oracle-word-active {
+          color: #D4AF37; /* Champagne Gold */
+          font-weight: 600; /* Semibold */
+          text-shadow: 0 0 12px rgba(212, 175, 55, 0.6); /* Light Ripple */
+          transform: scale(1.1); /* Physical Tension */
+          display: inline-block;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      /* Mobile Retina Border Utility */
+      .border-retina {
+        border-width: 1px;
+      }
+      @media (-webkit-min-device-pixel-ratio: 2) {
+        .border-retina { border-width: 0.5px; }
+      }
+      @media (-webkit-min-device-pixel-ratio: 3) {
+        .border-retina { border-width: 0.33px; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0?dev",
+    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime?dev",
+    "react-dom": "https://esm.sh/react-dom@18.2.0?dev",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?dev",
+    "lucide-react": "https://esm.sh/lucide-react@0.263.1?dev&external=react",
+    "framer-motion": "https://esm.sh/framer-motion@11.0.8?dev&external=react,react-dom",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@tanstack/react-virtual": "https://esm.sh/@tanstack/react-virtual@3.0.0?external=react,react-dom"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <!-- SVG Filter for Ebullition Effect -->
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0">
+      <defs>
+        <filter id="boiling-turbulence">
+           <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" />
+           <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" />
+        </filter>
+      </defs>
+    </svg>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
